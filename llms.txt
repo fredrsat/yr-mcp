@@ -1,0 +1,20 @@
+# yr-mcp
+
+> MCP server for weather data from Yr / MET Norway — forecasts, minute-by-minute precipitation nowcasts, and location search.
+
+The server exposes three tools over MCP stdio: `get_forecast` (Locationforecast 2.0: hourly temperature, wind, precipitation and weather symbols plus a ~10-day daily summary; works globally), `get_nowcast` (Nowcast 2.0: minute-by-minute precipitation for the next ~90 minutes; Nordic region only), and `search_location` (Yr's location registry for disambiguating place names). Tools accept either a place name or explicit lat/lon coordinates; times are converted to the location's local time zone.
+
+No API key is required. Tech stack: single-file Node.js 18+ ES module (`server.js`) using `@modelcontextprotocol/sdk` and `zod`. The server follows MET's terms of service (identifying `User-Agent` header, coordinates truncated to four decimals) — forks should change the `USER_AGENT` constant. Weather data is licensed NLOD / CC BY 4.0 by MET Norway; the code is MIT.
+
+## Docs
+
+- [README](https://github.com/fredrsat/yr-mcp/blob/main/README.md): Tool reference, installation for Claude Code/Desktop, example dialogue, data-source terms
+- [LICENSE](https://github.com/fredrsat/yr-mcp/blob/main/LICENSE): MIT license
+
+## Source
+
+- [server.js](https://github.com/fredrsat/yr-mcp/blob/main/server.js): The entire MCP server — tool definitions, MET/Yr API calls, formatting
+
+## Optional
+
+- [package.json](https://github.com/fredrsat/yr-mcp/blob/main/package.json): Dependencies and bin entry
